@@ -1,31 +1,91 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/PA8fMuFu)
+
 # Homework 1 AI Synthesis Activity
 
 Only complete one of the assignments below! You can delete the other assignment in this document once you've made your choice.
 
-## Activity: You used AI 
+## Activity: You used AI
+
 ### Part 1
+>
 > Cite the usage by including screenshots, a text transcript, or a link to the conversation with your AI of choice. Make sure to include any context, instructions, and all the conversations you had with the AI.
 
+is this the right way to import fs and papaparse in function parseData?
+
+Yes, your approach to importing fs and papaparse inside the parseData function is correct for a Node.js environment.
+
+so in javascript, do you not use something like import ... from ... and use const ... = require... instead?
+
+In JavaScript, you use import ... from ... for ES modules and const ... = require(...) for CommonJS modules.
+
+Node.js traditionally uses require, but newer versions support import if your project is configured for ES modules (e.g., with "type": "module" in package.json or using .mjs files).
+If your file is .js and your project does not specify ES modules, you should use require.
+If your file is .mjs or your package.json has "type": "module", you can use import.
+Your current usage of require is correct for most Node.js projects using .js files.
+
+what does ./ mean? Isn't it relative to the current file?
+
+cis-1962-hw1-data-analysis-Aiden-YH-Lee
+
+means "relative to the current working directory"—not the location of the current file, but the directory from which you run your Node.js process (usually your terminal's current directory).
+
+why does printing csv result in all the elements correctly being printed, but csv[0] results in undefined?
+
+When you use Papa.parse(data), it returns an object, not an array. The parsed result is usually an object with a data property that contains the array of rows.
+
+what does Object.values() do and why do we need this?
+
+Object.values(obj) returns an array of all the values in an object.
+
+You need this because, when you parse a CSV with header: true, each row is an object with column names as keys. To check all the values in a row (for nulls, etc.), you use Object.values(row) to get an array of those values, so you can use array methods like .some() or .every().
+
+is there a way to autolint code when saving?
+
+Yes, you can autolint your code on save in VS Code by installing the ESLint extension:
+
+Open VS Code.
+Go to Extensions (Cmd+Shift+X).
+Search for and install "ESLint" by Microsoft.
+After installing, VS Code will automatically lint your files on save if you have a valid ESLint config.
+
+why does current code transform data into list of undefined?
+
+Your code transforms data into a list of undefined because your .map() function does not return anything.
+
+In JavaScript, the .map() method creates a new array by applying a function to each element and collecting the return values. If your function does not explicitly return a value, each element becomes undefined.
+
+how to do not in in javascript like python?
+
+In JavaScript, you do not use not in like in Python.
+Instead, use the logical NOT operator ! with the in keyword:
+
+does javascript have += 1 or ++ to increment value?
+
+Yes, JavaScript supports both += 1 and ++ for incrementing values.
+
+is res.values() correct way to return only the values of the hashmap as array
+
+Yes, if res is a plain JavaScript object (used as a hashmap), you can use Object.values(res) to get an array of its values.
+
 ### Part 2
+>
 > Write about why you used AI. Was there a gap in knowledge you wanted to fill? Were the answers through traditional search engines not adequate? Did you want to let AI help you format something in a quick manner?
 
+I just find it easier to ask AI because copilot is built in vscode so I don't need to switch between tabs. Most of my AI use is trying to understand how to use some function or concept. I also occasionally use it to help debug and understand what I'm doing wrong. I am most familiar with python, so most of the time I think I know the gist of what I want to do but I cannot translate that to javascript, and I usually ask what this syntax would be in javascript and learn from it.
+
 ### Part 3
+>
 > Evaluate the AI's response. If you asked multiple questions, you can pick one of the responses the AI generated. Does the AI answer your question properly? Does it hallucinate any details? Could there be room to improve this response through manual editing? Did you accept this response fully or adapt parts of it into your work?
 
+I think it answered most of my questions properly without hallucinating any details. Maybe this is because I asked simple things. I accepted the response in that I understood how some javascript syntax works and apply it to my use case.
+
 ### Part 4
+>
 > If you used unfamiliar syntax or concepts generated by AI within your assignment, be sure to research them and explain what those concepts are to demonstrate your understanding.
+forEach -> returns undefined, so would just use this to modify elements in place. Do not try assigning the result to variable.
+map -> need a return statement for each element.
+reduce -> keep a reducing element, and a current running element, and do some operation to return the final reducing element
+You should use ! instead of 'not' as in python
+Do not forget parentheses and brackets for for loops and if statements.
 
-------------------------------------------------------------------------------------------------
-
-## Activity B: You did NOT use AI
-### Part 1
-> Explain some improvement you want to make within your code. Perhaps you have a code block that could be more concise, or a part of your code could be improved with a library or be performed with a more efficient algorithm.
-
-### Part 2
-> Ask AI how to improve your code, by picking a part of your program you are interested in improving and asking something along the lines of "how can I improve this code?" This does not have to be verbatim; you could ask more specific questions for improvement, like "what JavaScript libraries could improve the efficiency of my code?" Screenshot or link the response.
-
-### Part 3
-> Evaluate the response the AI generates. You may need to do some research to do this evaluation, to see if the syntax generates correctly or if any libraries the AI suggests are appropriate for the current task. Report on whether the AI's solution fits within your project, or if it would need modifications to work properly.
-
-*** You do NOT need to use the AI suggestion within your final submission, if your code already works properly. If the scope of your inquiry in this activity leads you to replace parts of your code, switch to the other version of this activity instead. ***
+***You do NOT need to use the AI suggestion within your final submission, if your code already works properly. If the scope of your inquiry in this activity leads you to replace parts of your code, switch to the other version of this activity instead.***
